@@ -1,0 +1,9 @@
+{
+	"name": "adf-spotify-claudio",
+	"location": "brazilsouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a9216337-7157-4006-9cc3-cd2f53ab8521",
+		"tenantId": "13e3db6a-fd3a-4f08-bbde-75037473e7ee"
+	}
+}
