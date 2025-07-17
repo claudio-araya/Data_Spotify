@@ -1,0 +1,13 @@
+delta_lake/bronze/
+delta_lake/silver/
+delta_lake/gold/
+
+**/_spark_metadata/
+**/_delta_log/
+
+.ipynb_checkpoints/
+
+__pycache__/
+*.pyc
+
+.env
