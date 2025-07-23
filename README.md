@@ -3,11 +3,14 @@
 📁 **Source**:  
 [Spotify Tracks - Attributes and Popularity (Kaggle)](https://www.kaggle.com/datasets/melissamonfared/spotify-tracks-attributes-and-popularity/data)
 
+## 📊 Dataset Overview
+
+This dataset contains information about thousands of Spotify tracks, including audio features, popularity metrics, and metadata related to artists, albums, and genres.
+
 ## 📄 Column Descriptions (from `dataset.csv`)
 
 | Column Name         | Description |
 |---------------------|-------------|
-| `index`             | Unique index for each track (can be ignored for analysis) |
 | `track_id`          | Spotify's unique identifier for the track |
 | `artists`           | Name of the performing artist(s) |
 | `album_name`        | Title of the album the track belongs to |
@@ -29,13 +32,50 @@
 | `time_signature`    | Time signature of the track (e.g., 4 = 4/4) |
 | `track_genre`       | Assigned genre label for the track |
 
-The original file, `dataset.csv`, has been processed to generate the following outputs:
 
-### `dim/`
-- `dim_artists.csv`: Unique artists with a generated `artist_id`.
-- `dim_albums.csv`: Unique albums with associated `artist_id` and a generated `album_id`.
-- `dim_genres.csv`: Unique track genres with a generated `genre_id`.
-- `dim_tracks.csv`: Tracks with `track_id`, `track_name`, and references to `album_id` and `genre_id`.
+## Bronze Layer (Preprocessed CSVs)
 
-### `fact/`
-- `fact_tracks.csv`: Numerical and categorical attributes for each track (e.g., popularity, tempo, energy, etc.), indexed by `track_id`.
+The original dataset (`dataset.csv`) was not ingested directly in raw form. Instead, it was processed using the `Kimball.ipynb` notebook to follow a dimensional modeling approach. This script splits the raw dataset into dimension and fact tables as `.csv` files:
+
+- `dim_artists.csv`: Unique artists with a generated `artist_id`
+- `dim_albums.csv`: Unique albums with associated `artist_id` and a generated `album_id`
+- `dim_genres.csv`: Unique track genres with a generated `genre_id`
+- `dim_tracks.csv`: Tracks with `track_id`, `track_name`, and references to `album_id` and `genre_id`
+- `fact_tracks.csv`: Numerical and categorical audio features per `track_id`
+
+These files were saved into `dim/` and `fact/` folders and then loaded as Delta tables in the Silver layer.
+
+
+
+## Silver Layer
+
+The CSV files created in the Bronze layer were read into Spark and stored in Delta format. These tables serve as the clean, structured foundation for analytics:
+
+- `dim_artists`
+- `dim_albums`
+- `dim_genres`
+- `dim_tracks`
+- `fact_tracks`
+
+
+
+## Gold Layer 
+
+From the Silver Delta tables, additional aggregated and analytical views were created for analysis purposes, such as:
+
+- `all_info`: All tracks with artist and album context, excluding IDs
+- `avg_metrics_by_artist`: Average track metrics per artist
+- `avg_metrics_by_genre`: Average track metrics per genre
+- `avg_metrics_by_album_artist`: Average metrics per album and artist
+- `song_count_by_artist`: Total number of songs per artist
+
+These tables are written in Delta format and can be used for reporting, exploration, or ML pipelines.
+
+
+## ✅ Tools & Technologies
+
+- Apache Spark
+- Delta Lake
+- PySpark
+- Lakehouse architecture (Bronze → Silver → Gold)
+- Python 3.x
