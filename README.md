@@ -1,4 +1,4 @@
-This project applies a *data lakehouse architecture* to analyze and transform a Spotify music dataset using **Apache Spark** and **Delta Lake**.
+This project implements a basic data lakehouse architecture to analyze and transform a Spotify music dataset using Apache Spark and Delta Lake.
 
 The data is organized into three layers: **Bronze**, **Silver**, and **Gold**.
 
