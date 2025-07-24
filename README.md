@@ -1,4 +1,6 @@
-# Spotify Tracks Attributes and Popularity
+This project applies a *data lakehouse architecture* to analyze and transform a Spotify music dataset using **Apache Spark** and **Delta Lake**.
+
+The data is organized into three layers: **Bronze**, **Silver**, and **Gold**.
 
 📁 **Source**:  
 [Spotify Tracks - Attributes and Popularity (Kaggle)](https://www.kaggle.com/datasets/melissamonfared/spotify-tracks-attributes-and-popularity/data)
@@ -72,10 +74,10 @@ From the Silver Delta tables, additional aggregated and analytical views were cr
 These tables are written in Delta format and can be used for reporting, exploration, or ML pipelines.
 
 
-## ✅ Tools & Technologies
+## Tools & Technologies
 
 - Apache Spark
 - Delta Lake
 - PySpark
 - Lakehouse architecture (Bronze → Silver → Gold)
-- Python 3.x
+- Python 3.12
