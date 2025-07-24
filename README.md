@@ -2,12 +2,12 @@ This project implements a basic data lakehouse architecture to analyze and trans
 
 The data is organized into three layers: **Bronze**, **Silver**, and **Gold**.
 
-📁 **Source**:  
-[Spotify Tracks - Attributes and Popularity (Kaggle)](https://www.kaggle.com/datasets/melissamonfared/spotify-tracks-attributes-and-popularity/data)
-
 ## 📊 Dataset Overview
 
 This dataset contains information about thousands of Spotify tracks, including audio features, popularity metrics, and metadata related to artists, albums, and genres.
+
+📁 **Source**:  
+[Spotify Tracks - Attributes and Popularity (Kaggle)](https://www.kaggle.com/datasets/melissamonfared/spotify-tracks-attributes-and-popularity/data)
 
 ## 📄 Column Descriptions (from `dataset.csv`)
 
